@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace gjimenezS5B.Utils
 {
-    internal class FileAccessHelper
+    public class FileAccessHelper
     {
+        public static string GetLocalFilePath(string filename)
+        {
+            return System.IO.Path.Combine(FileSystem.AppDataDirectory, filename);
+        }
     }
 }
