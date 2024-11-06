@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="gjimenezS5B.Views.Principal"
+             Title="Principal">
+    <VerticalStackLayout>
+        <Label 
+            Text="SEMANA 5: SQLITE"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry x:Name="txtName"
+               Placeholder="Ingrese el nombre">
+        </Entry>
+        <Grid RowSpacing="20"
+              ColumnSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnAdd"
+                    Text="Agregar persona"
+                    Clicked="btnAdd_Clicked"
+                    Grid.Row="0"
+                    Grid.Column="0">
+            </Button>
+            <Label x:Name="lblStatus"
+                   TextColor="red"
+                   Grid.Row="1"
+                   Grid.Column="0">
+            </Label>
+            <Button x:Name="btnMostrar"
+                    Text="Listar personas"
+                    Clicked="btnMostrar_Clicked"
+                    Grid.Row="2"
+                    Grid.Column="0">
+            </Button>
+            <CollectionView x:Name="listaPersona"
+                            Grid.Row="3"
+                            Grid.Column="0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnSpacing="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="chkSeleccion"
+                                      Grid.Column="0"
+                                      VerticalOptions="Center"
+                                      CheckedChanged="chkSeleccion_CheckedChanged"
+                                      Margin="0,5,0,5">
+                            </CheckBox>
+                            <Label x:Name="lblId"
+                                   Text="{Binding Id}"
+                                   Grid.Column="1"
+                                   Margin="0,5,0,5">
+                            </Label>
+                            <Entry x:Name="txtNombre"
+                                   Text="{Binding Name}"
+                                   Grid.Column="2"
+                                   Margin="0,5,0,5"
+                                   TextChanged="txtNombre_TextChanged"
+                                   IsEnabled="{Binding Source={x:Reference chkSeleccion}, Path=IsChecked}">
+                            </Entry>
+                            <Button x:Name="btnModificar"
+                                    Text="Actualizar"
+                                    Grid.Column="3"
+                                    Clicked="btnModificar_Clicked"
+                                    Margin="0,5,0,5"
+                                    BackgroundColor="Green"
+                                    IsVisible="{Binding Source={x:Reference chkSeleccion}, Path=IsChecked}">
+                            </Button>
+                            <Button x:Name="btnEliminar"
+                                    Text="Eliminar"
+                                    Grid.Column="4"
+                                    Clicked="btnEliminar_Clicked"
+                                    Margin="0,5,0,5"
+                                    BackgroundColor="Red"
+                                    IsVisible="{Binding Source={x:Reference chkSeleccion}, Path=IsChecked}">
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label x:Name="lblMensaje"
+                   TextColor="red"
+                   Grid.Row="5"
+                   Grid.Column="0">
+            </Label>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
