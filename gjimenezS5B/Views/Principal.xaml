@@ -36,12 +36,14 @@
                    Grid.Row="1"
                    Grid.Column="0">
             </Label>
+            
             <Button x:Name="btnMostrar"
                     Text="Listar personas"
                     Clicked="btnMostrar_Clicked"
                     Grid.Row="2"
                     Grid.Column="0">
             </Button>
+            
             <CollectionView x:Name="listaPersona"
                             Grid.Row="3"
                             Grid.Column="0">
@@ -55,17 +57,20 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
+                            
                             <CheckBox x:Name="chkSeleccion"
                                       Grid.Column="0"
                                       VerticalOptions="Center"
                                       CheckedChanged="chkSeleccion_CheckedChanged"
                                       Margin="0,5,0,5">
                             </CheckBox>
+                            
                             <Label x:Name="lblId"
                                    Text="{Binding Id}"
                                    Grid.Column="1"
                                    Margin="0,5,0,5">
                             </Label>
+                            
                             <Entry x:Name="txtNombre"
                                    Text="{Binding Name}"
                                    Grid.Column="2"
@@ -73,6 +78,7 @@
                                    TextChanged="txtNombre_TextChanged"
                                    IsEnabled="{Binding Source={x:Reference chkSeleccion}, Path=IsChecked}">
                             </Entry>
+                            
                             <Button x:Name="btnModificar"
                                     Text="Actualizar"
                                     Grid.Column="3"
@@ -81,6 +87,7 @@
                                     BackgroundColor="Green"
                                     IsVisible="{Binding Source={x:Reference chkSeleccion}, Path=IsChecked}">
                             </Button>
+                            
                             <Button x:Name="btnEliminar"
                                     Text="Eliminar"
                                     Grid.Column="4"
@@ -93,8 +100,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            
             <Label x:Name="lblMensaje"
-                   TextColor="red"
+                   TextColor="Blue"
                    Grid.Row="5"
                    Grid.Column="0">
             </Label>

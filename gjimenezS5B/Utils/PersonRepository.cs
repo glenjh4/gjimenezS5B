@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace gjimenezS5B.Utils
 {
-    public class PersonRepository
+    //Acción Crear Registro
+    public class PersonRepository 
     {
         string dbPath;
         private SQLiteConnection conn;
@@ -45,7 +46,8 @@ namespace gjimenezS5B.Utils
                 status = string.Format("Error al ingresar: " + ex.Message);
             }
         }
-
+        
+        //Acción Listar Registro
         public List<Persona> GetAllPeople()
         {
             try
@@ -61,6 +63,7 @@ namespace gjimenezS5B.Utils
             return new List<Persona>();
         }
 
+        //Acción Modificar Registro
         public bool ModificarRegistro(int id, string nombre)
         {
             try
@@ -75,21 +78,20 @@ namespace gjimenezS5B.Utils
                 Persona personaExistente = conn.Find<Persona>(id);
                 if (personaExistente == null)
                 {
-                    status = "No se encontró un registro con el ID especificado.";
+                    status = "No se encontró ningún registro";
                     return false;
                 }
-
                 personaExistente.Name = nombre;
                 int result = conn.Update(personaExistente);
 
                 if (result > 0)
                 {
-                    status = "Dato modificado correctamente";
+                    status = "Registro modificado correctamente";
                     return true;
                 }
                 else
                 {
-                    status = "No se realizó ninguna modificación.";
+                    status = "No se realizó la modificación";
                     return false;
                 }
             }
@@ -100,7 +102,7 @@ namespace gjimenezS5B.Utils
             }
         }
 
-
+        //Acción Eliminar Registro
         public void EliminarRegistro(int id)
         {
             int result = 0;
@@ -109,18 +111,16 @@ namespace gjimenezS5B.Utils
                 Init();
                 if (id == 0)
                 {
-                    throw new Exception("Seleccione el registro a eliminar");
+                    throw new Exception("Seleccione el registro que desea eliminar");
                 }
                 Persona person = new() { Id = id };
                 result = conn.Delete(person);
-                status = string.Format("Dato eliminado");
+                status = string.Format("Registro eliminado exitosamente");
             }
             catch (Exception ex)
             {
                 status = string.Format("Error al eliminar: " + ex.Message);
             }
         }
-
-        // Update Delete
     }
 }
